@@ -6,6 +6,10 @@
     <title>Module 4 Final Project</title>
     <link rel="stylesheet" href="./styles.css" />
     <script src="app.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/51bda4f28e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -25,8 +29,12 @@
       </nav>
       <div class="container header__container">
         <h1 class="header__title">BROWSE</h1>
-        <form>
-          <input class="input" type="search" placeholder="placeholder!" />
+        <form id="search-form">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="search movies here!"
+          />
           <button type="submit">Go!</button>
         </form>
       </div>
@@ -37,14 +45,17 @@
           <div class="row movies__row">
             <div class="movies__header">
               <h2 class="movies__results">Results for:</h2>
-              <select name="" id="">
+              <select name="" id="select">
                 <option disabled selected>Sort</option>
                 <option value="LOW_TO_HIGH">Low to High</option>
                 <option value="HIGH_TO_LOW">High to Low</option>
+                <option value="A_TO_Z">A to Z</option>
               </select>
             </div>
-            <div class="movies__wrapper">
-                
+            <div class="movies__wrapper movies__loading">
+              <div class="spinner--container">
+                <i class="fa-solid fa-spinner"></i>
+              </div>
             </div>
           </div>
         </div>

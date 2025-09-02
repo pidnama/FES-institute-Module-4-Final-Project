@@ -148,3 +148,30 @@ main {
 .movie__img--container {
   width: 280px;
 }
+
+/* 
+
+SPINNER 
+
+*/
+
+.fa-spinner {
+  font-size: 48px;
+  color: red;
+  animation: spin 1000ms infinite linear;
+  display: none;
+}
+
+.movies__loading .fa-spinner {
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
