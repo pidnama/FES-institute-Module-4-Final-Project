@@ -29,6 +29,7 @@ li {
 
 img {
   width: 100%;
+  height: 100%;
 }
 
 /* 
@@ -146,7 +147,12 @@ main {
 }
 
 .movie__img--container {
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.movie__title {
+  text-align: center;
 }
 
 /* 
