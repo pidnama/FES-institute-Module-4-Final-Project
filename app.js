@@ -2,20 +2,25 @@ const moviesWrapperEl = document.querySelector(".movies__wrapper");
 const searchInputEl = document.getElementById("search-input");
 const searchFormEl = document.getElementById("search-form");
 const selectElement = document.querySelector("select");
+
 let searchItem = "";
 
 searchFormEl.addEventListener("submit", (e) => {
   e.preventDefault();
   searchItem = searchInputEl.value;
+  moviesWrapperEl.classList.add("movies-loading");
   main();
 });
 
+// If movie.Year is a date range, this function ammends it as the first year of the date range when sorting. 
 function ammendYear(year) {
   return parseInt(year.split("-")[0]);
 }
 
 async function main(filter) {
   if (searchItem === "") {
+    moviesWrapperEl.classList.remove("movies-loading");
+
     return (moviesWrapperEl.innerHTML = "search for a movie!");
   } else {
     const moviesResponse = await fetch(
@@ -27,7 +32,6 @@ async function main(filter) {
     if (filter === "LOW_TO_HIGH") {
       moviesData.sort((a, b) => ammendYear(a.Year) - ammendYear(b.Year));
     }
-
     if (filter === "HIGH_TO_LOW") {
       moviesData.sort((a, b) => ammendYear(b.Year) - ammendYear(a.Year));
     }

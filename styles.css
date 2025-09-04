@@ -162,14 +162,15 @@ SPINNER
 */
 
 .fa-spinner {
-  font-size: 48px;
-  color: red;
   animation: spin 1000ms infinite linear;
-  display: none;
 }
 
-.movies__loading .fa-spinner {
-  display: block;
+.movies__loading--spinner {
+  display: none !important;
+}
+
+.movies-loading .movies__loading--spinner {
+  display: block !important;
 }
 
 @keyframes spin {
