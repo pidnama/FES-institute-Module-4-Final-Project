@@ -163,6 +163,7 @@ SPINNER
 
 .fa-spinner {
   animation: spin 1000ms infinite linear;
+  font-size: 48px;
 }
 
 .movies__loading--spinner {
