@@ -3,13 +3,14 @@ const searchFormEl = document.getElementById("search-form");
 const searchInputEl = document.getElementById("search-input");
 const selectElement = document.querySelector("select");
 const lightBulbElement = document.querySelector(".nav__link--anchor-bulb");
-console.log(lightBulbElement);
 let searchTerm = "";
 let lightsOn = false;
+let cachedMovies = [];
 
-searchFormEl.addEventListener("submit", (e) => {
+searchFormEl.addEventListener("submit", async (e) => {
   e.preventDefault();
   searchTerm = searchInputEl.value;
+  cachedMovies = await getMoviesData();
   main();
 });
 
@@ -29,7 +30,7 @@ async function getMoviesData() {
 }
 
 async function main(filter) {
-  const movies = await getMoviesData();
+  const movies = cachedMovies;
   if (searchTerm === "") {
     return (moviesWrapperEl.innerHTML = "Search for a movie!");
   } else {
