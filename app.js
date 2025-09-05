@@ -2,7 +2,10 @@ const moviesWrapperEl = document.querySelector(".movies__wrapper");
 const searchFormEl = document.getElementById("search-form");
 const searchInputEl = document.getElementById("search-input");
 const selectElement = document.querySelector("select");
+const lightBulbElement = document.querySelector(".nav__link--anchor-bulb");
+console.log(lightBulbElement);
 let searchTerm = "";
+let lightsOn = false;
 
 searchFormEl.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -13,6 +16,8 @@ searchFormEl.addEventListener("submit", (e) => {
 selectElement.addEventListener("change", (e) => {
   main(e.target.value);
 });
+
+lightBulbElement.addEventListener("click", lightsOff);
 
 async function getMoviesData() {
   const response = await fetch(
@@ -40,21 +45,15 @@ async function main(filter) {
 
 function sortMovies(movies, filter) {
   if (filter === "LOW_TO_HIGH") {
-    movies.sort(
-      (a, b) => ammendSortingYear(a.Year) - ammendSortingYear(b.Year)
-    );
+    movies.sort((a, b) => extractYear(a.Year) - extractYear(b.Year));
   } else if (filter === "HIGH_TO_LOW") {
-    movies.sort(
-      (a, b) => ammendSortingYear(b.Year) - ammendSortingYear(a.Year)
-    );
+    movies.sort((a, b) => extractYear(b.Year) - extractYear(a.Year));
   }
 }
 
-function ammendSortingYear(year) {
+function extractYear(year) {
   return parseInt(year.split("-")[0]);
 }
-
-console.log(ammendSortingYear("2006-2011"));
 
 function moviesHTML(movie) {
   return `<div class="movie">
@@ -65,4 +64,13 @@ function moviesHTML(movie) {
     <div class="movie__title">${movie.Title}</div>
         <div class="movie__release-date">${movie.Year}</div>
     </div>`;
+}
+
+function lightsOff() {
+  lightsOn = !lightsOn;
+  if (lightsOn) {
+    document.body.classList += " dark-theme";
+  } else {
+    document.body.classList.remove("dark-theme");
+  }
 }
