@@ -28,6 +28,7 @@ async function main(filter) {
   if (searchTerm === "") {
     return (moviesWrapperEl.innerHTML = "Search for a movie!");
   } else {
+    sortMovies(movies, filter);
     moviesWrapperEl.innerHTML = movies
       .map((movie) => {
         return moviesHTML(movie);
@@ -37,21 +38,23 @@ async function main(filter) {
   }
 }
 
-// Get sort working in a helper function
 function sortMovies(movies, filter) {
   if (filter === "LOW_TO_HIGH") {
-    movies.sort((a, b) => a.Year - b.Year);
+    movies.sort(
+      (a, b) => ammendSortingYear(a.Year) - ammendSortingYear(b.Year)
+    );
   } else if (filter === "HIGH_TO_LOW") {
-    movies.sort((a, b) => b.Year - a.Year);
+    movies.sort(
+      (a, b) => ammendSortingYear(b.Year) - ammendSortingYear(a.Year)
+    );
   }
 }
 
-// Figure out how to ammend years? maybe another helper function
 function ammendSortingYear(year) {
   return parseInt(year.split("-")[0]);
 }
 
-console.log(ammendSortingYear("2010 - 2015"));
+console.log(ammendSortingYear("2006-2011"));
 
 function moviesHTML(movie) {
   return `<div class="movie">
