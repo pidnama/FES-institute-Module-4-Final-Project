@@ -10,8 +10,18 @@ let cachedMovies = [];
 searchFormEl.addEventListener("submit", async (e) => {
   e.preventDefault();
   searchTerm = searchInputEl.value;
-  cachedMovies = await getMoviesData();
-  main();
+  moviesWrapperEl.innerHTML = `<i class="fa-solid fa-spinner movies__loading--spinner"></i>`;
+  document.body.classList.add("movies-loading");
+  try {
+    cachedMovies = await getMoviesData();
+    await main();
+  } catch {
+    moviesWrapperEl.innerHTML = "something went wrong, please try again";
+  } finally {
+    setTimeout(() => {
+      document.body.classList.remove("movies-loading");
+    }, 1000);
+  }
 });
 
 selectElement.addEventListener("change", (e) => {
@@ -60,7 +70,6 @@ function moviesHTML(movie) {
   return `<div class="movie">
     <figure class="movie__img--container">
          <img src="${movie.Poster}"
- alt="" class="movie___img">
     </figure>
     <div class="movie__title">${movie.Title}</div>
         <div class="movie__release-date">${movie.Year}</div>
