@@ -69,7 +69,7 @@ function extractYear(year) {
 function moviesHTML(movie) {
   return `<div class="movie">
     <figure class="movie__img--container">
-         <img src="${movie.Poster}"
+         <img src="${movie.Poster}" onerror=this.src="https://oionline.com/wp-content/uploads/2018/03/notfound.jpg">
     </figure>
     <div class="movie__title">${movie.Title}</div>
         <div class="movie__release-date">${movie.Year}</div>
