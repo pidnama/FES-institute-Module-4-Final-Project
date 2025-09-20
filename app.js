@@ -14,17 +14,15 @@ searchFormEl.addEventListener("submit", async (e) => {
   if (searchTerm) {
     searchResultsForEl.innerHTML = `Results for: ${searchTerm}`;
   }
-
   try {
     cachedMovies = await getMoviesData();
     await main();
   } catch {
-    moviesWrapperEl.innerHTML = "Something went wrong. Please try again";
+    moviesWrapperEl.innerHTML = `<p class="movies__wrapper--message">Something went wrong. Please try again later!</p>`;
   } finally {
     setTimeout(() => {
       document.body.classList.remove("movies-loading");
     }, 1000);
-    resultsForEl.innerHTML -= searchTerm;
   }
 });
 
@@ -44,7 +42,7 @@ async function getMoviesData() {
 async function main(filter) {
   const movies = cachedMovies;
   if (searchTerm === "") {
-    return (moviesWrapperEl.innerHTML = "Search for a movie!");
+    return (moviesWrapperEl.innerHTML = `<p class="movies__wrapper--message">Search for a movie!</p>`);
   } else {
     sortMovies(movies, filter);
     moviesWrapperEl.innerHTML = movies

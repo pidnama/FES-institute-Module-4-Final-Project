@@ -55,7 +55,8 @@ h1,
 .movie__release-date,
 .fa-lightbulb,
 .fa-video,
-.fa-spinner {
+.fa-spinner,
+.movies__wrapper--message {
   color: #fff;
 }
 
@@ -67,7 +68,7 @@ NAV
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1200px;
@@ -76,8 +77,16 @@ nav {
 }
 
 .nav__logo {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 70px;
+  color: #ffc107;
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-shadow: 0px 0px 0 rgb(242, 180, 0), 1px 1px 0 rgb(229, 167, 0),
+    2px 2px 0 rgb(217, 155, 0), 3px 3px 0 rgb(204, 142, 0),
+    4px 4px 0 rgb(191, 129, 0), 5px 5px 0 rgb(178, 116, 0),
+    6px 6px 0 rgb(165, 103, 0), 7px 7px 0 rgb(153, 91, 0),
+    8px 8px 0 rgb(140, 78, 0), 9px 9px 0 rgb(127, 65, 0),
+    10px 10px 0 rgb(114, 52, 0), 11px 11px 10px rgba(0, 0, 0, 0.6),
+    11px 11px 1px rgba(0, 0, 0, 0.5), 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav__links {
@@ -106,34 +115,64 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0px;
 }
 
 .header__title {
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 64px;
   margin-bottom: 24px;
+  color: #ffffff;
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-shadow: 0px 0px 0 rgb(242, 242, 242), 0px 1px 0 rgb(229, 229, 229),
+    0px 2px 0 rgb(217, 217, 217), 0px 3px 0 rgb(204, 204, 204),
+    0px 4px 0 rgb(191, 191, 191), 0px 5px 0 rgb(178, 178, 178),
+    0px 6px 0 rgb(165, 165, 165), 0px 7px 0 rgb(153, 153, 153),
+    0px 8px 0 rgb(140, 140, 140), 0px 9px 0 rgb(127, 127, 127),
+    0px 10px 0 rgb(114, 114, 114), 0px 11px 10px rgba(0, 0, 0, 0.6),
+    0px 11px 1px rgba(0, 0, 0, 0.5), 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 form {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 input {
-  padding: 12px 24px;
-  border-radius: 50px;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+  margin-bottom: 24px;
+  border-radius: 10px;
+  outline: 2px solid #febf00;
+  border: 0;
+  background-color: #e2e2e2;
+  outline-offset: 3px;
+  padding: 10px 1rem;
+  transition: 0.25s;
 }
 
 button {
-  margin-left: 16px;
-  width: 100%;
-  max-width: 50px;
-  border-radius: 20px;
-  color: white;
-  background-color: green;
+  background: #fbca1f;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
 }
 
 /* MAIN / SECTION */
@@ -144,6 +183,10 @@ main {
 }
 
 /* MOVIES */
+
+#movies .container {
+  padding-top: 0;
+}
 
 .movies__header {
   display: flex;
@@ -161,6 +204,12 @@ main {
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 50vh;
+}
+
+.movies__wrapper--message {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .movie {
@@ -169,7 +218,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   transition: transform 300ms ease;
   cursor: no-drop;
 }
@@ -202,7 +251,8 @@ SPINNER
 
 .fa-spinner {
   animation: spin 1000ms infinite linear;
-  font-size: 48px;
+  font-size: 60px;
+  font-weight: 700;
   position: absolute;
 }
 
@@ -235,10 +285,6 @@ RESPONSIVENESS
   .movies__row {
     margin: 0 32px;
   }
-
-  .movies__header {
-    margin: 0 16px;
-  }
 }
 /* DESKTOPS */
 @media (max-width: 992px) {
@@ -248,12 +294,27 @@ RESPONSIVENESS
 }
 /* TABLETS */
 @media (max-width: 768px) {
+  .nav__logo {
+    font-size: 60px;
+    text-align: center;
+  }
+
+  .header__title {
+    font-size: 54px;
+  }
+
+  input {
+    max-width: 380px;
+  }
   .movie {
     width: 50%;
   }
 }
 /* MOBILE PHONES */
 @media (max-width: 576px) {
+  .movies__results {
+    font-size: 20px;
+  }
   .movie {
     width: 100%;
   }
