@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,18 @@ GENERICS
 
 */
 
+body {
+  background: #242424;
+  background: radial-gradient(
+    circle,
+    rgba(36, 36, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(235, 18, 76, 1) 100%
+  );
+  height: 100vh;
+  position: relative;
+}
+
 a {
   text-decoration: none;
 }
@@ -20,7 +34,7 @@ li {
 }
 
 .container {
-  padding: 56px 0;
+  padding: 48px 0;
 }
 
 .row {
@@ -30,6 +44,17 @@ li {
 img {
   width: 100%;
   height: 100%;
+}
+
+h1,
+.nav__logo,
+.movies__results,
+.movie__title,
+.movie__release-date,
+.fa-lightbulb,
+.fa-video,
+.fa-spinner {
+  color: #fff;
 }
 
 /* 
@@ -46,7 +71,6 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px;
-  border: 2px solid blue;
 }
 
 .nav__logo {
@@ -72,9 +96,7 @@ HEADER
 
 header {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  border: 2px solid red;
 }
 
 .header__container {
@@ -117,7 +139,6 @@ button {
 main {
   width: 100%;
   max-width: 1200px;
-  border: 2px solid green;
   margin: 0 auto;
 }
 
@@ -149,6 +170,7 @@ main {
 .movie__img--container {
   width: 100%;
   max-width: 280px;
+  height: 420px;
 }
 
 .movie__title {
@@ -164,6 +186,7 @@ SPINNER
 .fa-spinner {
   animation: spin 1000ms infinite linear;
   font-size: 48px;
+  position: absolute;
 }
 
 .movies__loading--spinner {
@@ -215,4 +238,39 @@ section,
 .movie__title,
 .movie__release-date {
   transition: all 300ms ease;
+}
+
+/* 
+
+RESPONSIVENESS 
+
+*/
+
+/* LARGE DESKTOPS */
+@media (max-width: 1200px) {
+  .movies__row {
+    margin: 0 32px;
+  }
+
+  .movies__header {
+    margin: 0 16px;
+  }
+}
+/* DESKTOPS */
+@media (max-width: 992px) {
+  .movie {
+    margin: 12px;
+  }
+}
+/* TABLETS */
+@media (max-width: 768px) {
+  .movie {
+    width: 50%;
+  }
+}
+/* MOBILE PHONES */
+@media (max-width: 576px) {
+  .movie {
+    width: 100%;
+  }
 }

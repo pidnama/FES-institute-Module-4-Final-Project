@@ -1,6 +1,6 @@
-const moviesWrapperEl = document.querySelector(".movies__wrapper");
 const searchFormEl = document.getElementById("search-form");
 const searchInputEl = document.getElementById("search-input");
+const moviesWrapperEl = document.querySelector(".movies__wrapper");
 const selectElement = document.querySelector("select");
 const lightBulbElement = document.querySelector(".nav__link--anchor-bulb");
 let searchTerm = "";
@@ -16,7 +16,7 @@ searchFormEl.addEventListener("submit", async (e) => {
     cachedMovies = await getMoviesData();
     await main();
   } catch {
-    moviesWrapperEl.innerHTML = "something went wrong, please try again";
+    moviesWrapperEl.innerHTML = "Something went wrong. Please try again";
   } finally {
     setTimeout(() => {
       document.body.classList.remove("movies-loading");
