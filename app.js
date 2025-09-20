@@ -2,9 +2,8 @@ const searchFormEl = document.getElementById("search-form");
 const searchInputEl = document.getElementById("search-input");
 const moviesWrapperEl = document.querySelector(".movies__wrapper");
 const selectElement = document.querySelector("select");
-const lightBulbElement = document.querySelector(".nav__link--anchor-bulb");
+let searchResultsForEl = document.querySelector(".movies__results");
 let searchTerm = "";
-let lightsOn = false;
 let cachedMovies = [];
 
 searchFormEl.addEventListener("submit", async (e) => {
@@ -12,6 +11,10 @@ searchFormEl.addEventListener("submit", async (e) => {
   searchTerm = searchInputEl.value;
   moviesWrapperEl.innerHTML = `<i class="fa-solid fa-spinner movies__loading--spinner"></i>`;
   document.body.classList.add("movies-loading");
+  if (searchTerm) {
+    searchResultsForEl.innerHTML = `Results for: ${searchTerm}`;
+  }
+
   try {
     cachedMovies = await getMoviesData();
     await main();
@@ -21,14 +24,13 @@ searchFormEl.addEventListener("submit", async (e) => {
     setTimeout(() => {
       document.body.classList.remove("movies-loading");
     }, 1000);
+    resultsForEl.innerHTML -= searchTerm;
   }
 });
 
 selectElement.addEventListener("change", (e) => {
   main(e.target.value);
 });
-
-lightBulbElement.addEventListener("click", lightsOff);
 
 async function getMoviesData() {
   const response = await fetch(
@@ -74,13 +76,4 @@ function moviesHTML(movie) {
     <div class="movie__title">${movie.Title}</div>
         <div class="movie__release-date">${movie.Year}</div>
     </div>`;
-}
-
-function lightsOff() {
-  lightsOn = !lightsOn;
-  if (lightsOn) {
-    document.body.classList += " dark-theme";
-  } else {
-    document.body.classList.remove("dark-theme");
-  }
 }
