@@ -32,7 +32,7 @@ selectElement.addEventListener("change", (e) => {
 
 async function getMoviesData() {
   const response = await fetch(
-    `http://www.omdbapi.com/?apikey=24e4873b&s=${searchTerm}`
+    `https://www.omdbapi.com/?apikey=24e4873b&s=${searchTerm}`
   );
   const data = await response.json();
   const moviesData = data.Search;
